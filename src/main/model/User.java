@@ -3,7 +3,7 @@ package es.upm.dit.isst.controller.model;
 import javax.persistence.*;
 
 @Entity
-public class user{
+public class User{
     @Id
     private String email;
 	private String pass;
@@ -11,8 +11,7 @@ public class user{
 	private String apellido;
     private Vehiculo veh;
     
-
-    public user() {
+    public User() {
 
     }
 

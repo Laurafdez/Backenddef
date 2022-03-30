@@ -9,7 +9,8 @@ public class Vehiculo {
     @Id
     private int idveh;
     private boolean aparcadoOk;
-
+    private boolean libre;
+    
     @Lob
     private byte[] ubicacion;
 
@@ -34,6 +35,15 @@ public class Vehiculo {
 
     public void setAparcadoOk(boolean aparcadoOk) {
         this.aparcadoOk = aparcadoOk;
+    }
+    
+
+    public boolean getLibre() {
+        return this.libre;
+    }
+
+    public void setLibre(boolean libre) {
+        this.libre = libre;
     }
 
     public byte[] Ubicacion() {

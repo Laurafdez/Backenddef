@@ -15,7 +15,7 @@ public class Viaje {
     private Date fecha;
     private int tiempo;
     private User id;
-
+    private int status;
     @Lob
     private byte[] ubini;
     @Lob
@@ -49,6 +49,8 @@ public class Viaje {
     public void setTiempo(int tiempo) {
         this.tiempo= tiempo;
     }
+
+
     public User getId() {
         return this.id;
     }
