@@ -14,109 +14,109 @@ import es.upm.dit.isst.tfgapi.model.TFG;
 
 @RestController
 
-public class TFGController {
+public class VehiculoController {
 
-    private final TFGRepository tfgRepository;
+    private final VehiculoRepository vehiculoRepository;
 
-    public static final Logger log = LoggerFactory.getLogger(TFGController.class);
+    public static final Logger log = LoggerFactory.getLogger(VehiculoController.class);
 
-    public TFGController(TFGRepository t) {
+    public VehiculoController(VehiculoRepository t) {
 
-        this.tfgRepository = t;
-
-    }
-
-    @GetMapping("/tfgs")
-
-    List<TFG> readAll() {
-
-      return (List<TFG>) tfgRepository.findAll();
+        this.vehiculoRepository = t;
 
     }
 
- 
+    @GetMapping("/vehiculos")
 
-    @PostMapping("/tfgs")
+    List<Vehiculo> readAll() {
 
-    ResponseEntity<TFG> create(@RequestBody TFG newTFG) throws URISyntaxException {
-
-      TFG result = tfgRepository.save(newTFG);
-
-      return ResponseEntity.created(new URI("/tfgs/" + result.getEmail())).body(result);
+      return (List<Vehiculo>) vehiculoRepository.findAll();
 
     }
 
  
 
-    @GetMapping("/tfgs/{id}")
+    @PostMapping("/vehiculos")
 
-    ResponseEntity<TFG> read(@PathVariable String id) {
+    ResponseEntity<Vehiculo> create(@RequestBody Vehiculo newVehiculo) throws URISyntaxException {
 
-      return tfgRepository.findById(id).map(tfg ->
+      Vehiculo result = vehiculoRepository.save(newVehiculo);
 
-         ResponseEntity.ok().body(tfg)
-
-      ).orElse(new ResponseEntity<TFG>(HttpStatus.NOT_FOUND));
+      return ResponseEntity.created(new URI("/vehiculos/" + result.getEmail())).body(result);
 
     }
 
-    @PutMapping("/tfgs/{id}")
+ 
 
-    ResponseEntity<TFG> update(@RequestBody TFG newTFG, @PathVariable String id) {
+    @GetMapping("/vehiculos/{id}")
 
-      return tfgRepository.findById(id).map(tfg -> {
+    ResponseEntity<Vehiculo> read(@PathVariable String id) {
 
-        tfg.setNombre(newTFG.getNombre());
+      return vehiculoRepository.findById(id).map(vehiculo ->
 
-        tfg.setTitulo(newTFG.getTitulo());
+         ResponseEntity.ok().body(vehiculo)
 
-        tfg.setTutor(newTFG.getTutor());
-
-        tfg.setStatus(newTFG.getStatus());
-
-        tfg.setNota(newTFG.getNota());
-
-        tfg.setMemoria(newTFG.getMemoria());
-
-        tfgRepository.save(tfg);
-
-        return ResponseEntity.ok().body(tfg);
-
-      }).orElse(new ResponseEntity<TFG>(HttpStatus.NOT_FOUND));
+      ).orElse(new ResponseEntity<Vehiculo>(HttpStatus.NOT_FOUND));
 
     }
 
-    @DeleteMapping("tfgs/{id}")
+    @PutMapping("/vehiculos/{id}")
 
-    ResponseEntity<TFG> delete(@PathVariable String id) {
+    ResponseEntity<Vehiculo> update(@RequestBody Vehiculo newVehiculo, @PathVariable String id) {
 
-      tfgRepository.deleteById(id);
+      return vehiculoRepository.findById(id).map(vehiculo -> {
+
+        vehiculo.setNombre(newVehiculo.getNombre());
+
+        vehiculo.setTitulo(newVehiculo.getTitulo());
+
+        vehiculo.setTutor(newVehiculo.getTutor());
+
+        vehiculo.setStatus(newVehiculo.getStatus());
+
+        vehiculo.setNota(newVehiculo.getNota());
+
+        vehiculo.setMemoria(newVehiculo.getMemoria());
+
+        vehiculoRepository.save(vehiculo);
+
+        return ResponseEntity.ok().body(vehiculo);
+
+      }).orElse(new ResponseEntity<Vehiculo>(HttpStatus.NOT_FOUND));
+
+    }
+
+    @DeleteMapping("vehiculos/{id}")
+
+    ResponseEntity<Vehiculo> delete(@PathVariable String id) {
+
+      vehiculoRepository.deleteById(id);
 
       return ResponseEntity.ok().body(null);
 
     }
 
-    @GetMapping("/tfgs/profesor/{id}")
+    @GetMapping("/vehiculos/profesor/{id}")
 
-    List<TFG> readTutor(@PathVariable String id) {
+    List<Vehiculo> readTutor(@PathVariable String id) {
 
-      return (List<TFG>) tfgRepository.findByTutor(id);
+      return (List<Vehiculo>) vehiculoRepository.findByTutor(id);
 
     }
 
-    @PostMapping("/tfgs/{id}/incrementa")
+    @PostMapping("/vehiculos/{id}/incrementa")
 
-    ResponseEntity<TFG> incrementa(@PathVariable String id) {
+    ResponseEntity<Vehiculo> incrementa(@PathVariable String id) {
 
-      return tfgRepository.findById(id).map(tfg -> {
+      return vehiculoRepository.findById(id).map(vehiculo -> {
 
-        tfg.setStatus(tfg.getStatus() + 1);
+        vehiculo.setStatus(vehiculo.getStatus() + 1);
 
-        tfgRepository.save(tfg);
+        vehiculoRepository.save(vehiculo);
 
-        return ResponseEntity.ok().body(tfg);
+        return ResponseEntity.ok().body(vehiculo);
 
-      }).orElse(new ResponseEntity<TFG>(HttpStatus.NOT_FOUND));  
+      }).orElse(new ResponseEntity<Vehiculo>(HttpStatus.NOT_FOUND));  
 
     }
 
