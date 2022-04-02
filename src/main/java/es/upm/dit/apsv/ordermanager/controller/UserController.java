@@ -1,8 +1,6 @@
-package es.upm.dit.isst.tfgapi.controller;
+package es.upm.dit.apsv.ordermanager.controller;
 
-import es.upm.dit.isst.tfgapi.repository.userRepository;
-
-import org.apache.catalina.User;
+//import org.apache.catalina.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -12,7 +10,10 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
-import es.upm.dit.isst.tfgapi.model.TFG;
+
+import es.upm.dit.apsv.ordermanager.repository.UserRepository;
+//import es.upm.dit.isst.tfgapi.model.TFG;
+import es.upm.dit.apsv.ordermanager.model.User;
 
 @RestController
 
@@ -70,16 +71,17 @@ public class UserController {
 
         user.setNombre(newUser.getNombre());
 
-        user.setTitulo(newUser.getApellido());
+        user.setPass(newUser.getPass());
 
-        user.setTutor(newUser.getVeh());
+        user.setApellido(newUser.getApellido());
 
+        user.setVeh(newUser.getVeh());
 
         userRepository.save(user);
 
         return ResponseEntity.ok().body(user);
 
-      }).orElse(new ResponseEntity<TFG>(HttpStatus.NOT_FOUND));
+      }).orElse(new ResponseEntity<User>(HttpStatus.NOT_FOUND));
 
     }
 

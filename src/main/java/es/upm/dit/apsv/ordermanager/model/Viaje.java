@@ -1,12 +1,12 @@
-package es.upm.dit.isst.controller.model;
+package es.upm.dit.apsv.ordermanager.model;
 
 import java.sql.Date;
 
 import javax.persistence.*;
 
 import org.apache.catalina.User;
-import org.springframework.boot.autoconfigure.liquibase.LiquibaseDataSource;
-import org.springframework.stereotype.Indexed;
+//import org.springframework.boot.autoconfigure.liquibase.LiquibaseDataSource;
+//import org.springframework.stereotype.Indexed;
 
 @Entity
 public class Viaje {
@@ -28,7 +28,7 @@ public class Viaje {
     }
 
     public int getIdviaje() {
-        return this.idveh;
+        return this.idviaje;
     }
 
     public void setIdviaje(int idviaje) {
@@ -59,14 +59,20 @@ public class Viaje {
         this.id= id;
     }
 
-    public byte[] Ubini() {
+    public int getStatus() {
+        return this.status;
+    }
+    public void setStatus(int status) {
+        this.status= status;
+    }
+    public byte[] getUbini() {
         return this.ubini;
     }
 
     public void setUbini(byte[] ubini) {
         this.ubini = ubini;
     }
-    public byte[] Ubifin() {
+    public byte[] getUbifin() {
         return this.ubifin;
     }
 

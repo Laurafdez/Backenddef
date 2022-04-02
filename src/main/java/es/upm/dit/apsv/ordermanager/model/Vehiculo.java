@@ -1,8 +1,8 @@
-package es.upm.dit.isst.controller.model;
+package es.upm.dit.apsv.ordermanager.model;
 
 import javax.persistence.*;
 
-import org.springframework.boot.autoconfigure.liquibase.LiquibaseDataSource;
+//import org.springframework.boot.autoconfigure.liquibase.LiquibaseDataSource;
 
 @Entity
 public class Vehiculo {
@@ -30,7 +30,7 @@ public class Vehiculo {
     }
 
     public boolean getAparcadoOk() {
-        return this.idveh;
+        return this.aparcadoOk;
     }
 
     public void setAparcadoOk(boolean aparcadoOk) {

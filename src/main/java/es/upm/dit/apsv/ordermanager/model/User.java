@@ -1,4 +1,4 @@
-package es.upm.dit.isst.controller.model;
+package es.upm.dit.apsv.ordermanager.model;
 
 import javax.persistence.*;
 
@@ -40,7 +40,7 @@ public class User{
     }
 
     public String getApellido() {
-        return this.titulo;
+        return this.apellido;
     }
 
     public void setApellido(String apellido) {
@@ -49,6 +49,9 @@ public class User{
 
     public Vehiculo getVeh() {
         return this.veh;
+    }
+    public void setVeh(Vehiculo veh){
+        this.veh=veh;
     }
 
     public void setId(Vehiculo veh) {
