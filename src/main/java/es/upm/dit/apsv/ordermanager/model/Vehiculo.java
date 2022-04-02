@@ -46,7 +46,7 @@ public class Vehiculo {
         this.libre = libre;
     }
 
-    public byte[] Ubicacion() {
+    public byte[] getUbicacion() {
         return this.ubicacion;
     }
 

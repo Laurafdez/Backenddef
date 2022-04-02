@@ -1,6 +1,5 @@
 package es.upm.dit.apsv.ordermanager.controller;
 
-//import es.upm.dit.isst.tfgapi.repository.TFGRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -10,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
-import es.upm.dit.apsv.ordermanager.repository.VehiculoRepository;
 import es.upm.dit.apsv.ordermanager.model.Vehiculo;
+import es.upm.dit.apsv.ordermanager.repository.VehiculoRepository;
 
 @RestController
 
@@ -51,13 +50,14 @@ public class VehiculoController {
 
     @GetMapping("/vehiculos/{id}")
 
-    ResponseEntity<Vehiculo> read(@PathVariable String id) {
+    void read(@PathVariable String id) {
 
-      return vehiculoRepository.findById(id).map(vehiculo ->
+      ResponseEntity<Vehiculo> vehiculo_alquilado =  vehiculoRepository.findById(Long.parseLong(id)).map(vehiculo -> ResponseEntity.ok().body(vehiculo))
+      .orElse(new ResponseEntity<Vehiculo>(HttpStatus.NOT_FOUND));
 
-         ResponseEntity.ok().body(vehiculo)
+      if (vehiculo_alquilado.getStatusCode() == 404){
 
-      ).orElse(new ResponseEntity<Vehiculo>(HttpStatus.NOT_FOUND));
+      }
 
     }
 
@@ -65,19 +65,15 @@ public class VehiculoController {
 
     ResponseEntity<Vehiculo> update(@RequestBody Vehiculo newVehiculo, @PathVariable String id) {
 
-      return vehiculoRepository.findById(id).map(vehiculo -> {
+      return vehiculoRepository.findById(Long.parseLong(id)).map(vehiculo -> {
 
-        vehiculo.setNombre(newVehiculo.getNombre());
+        vehiculo.setAparcadoOk(true);
 
-        vehiculo.setTitulo(newVehiculo.getTitulo());
+        vehiculo.setLibre(true);;
 
-        vehiculo.setTutor(newVehiculo.getTutor());
+        vehiculo.setUbicacion(newVehiculo.getUbicacion());
 
-        vehiculo.setStatus(newVehiculo.getStatus());
-
-        vehiculo.setNota(newVehiculo.getNota());
-
-        vehiculo.setMemoria(newVehiculo.getMemoria());
+        vehiculo.setIdveh(newVehiculo.getIdveh());
 
         vehiculoRepository.save(vehiculo);
 
@@ -109,7 +105,7 @@ public class VehiculoController {
 
     ResponseEntity<Vehiculo> incrementa(@PathVariable String id) {
 
-      return vehiculoRepository.findById(id).map(vehiculo -> {
+      return vehiculoRepository.findById(Long.parseLong(id)).map(vehiculo -> {
 
         vehiculo.setStatus(vehiculo.getStatus() + 1);
 
