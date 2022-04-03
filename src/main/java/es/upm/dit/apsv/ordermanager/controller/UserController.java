@@ -49,8 +49,6 @@ public class UserController {
 
     }
 
- 
-
     @GetMapping("/users/{id}")
 
     ResponseEntity<User> read(@PathVariable String id) {
