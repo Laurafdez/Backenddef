@@ -99,11 +99,11 @@ public class ViajeController {
 
     }
 
-    @GetMapping("/viajes/profesor/{id}")
+    @GetMapping("/viajes/{id}")
 
-    List<Viaje> readTutor(@PathVariable String id) {
+    List<Viaje> readViaje (@PathVariable String id) {
 
-      return (List<Viaje>) viajeRepository.findByTutor(id);
+      return (List<Viaje>) viajeRepository.findByNombre(id);
 
     }
 

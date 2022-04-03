@@ -55,10 +55,10 @@ public class VehiculoController {
       ResponseEntity<Vehiculo> vehiculo_alquilado =  vehiculoRepository.findById(Long.parseLong(id)).map(vehiculo -> ResponseEntity.ok().body(vehiculo))
       .orElse(new ResponseEntity<Vehiculo>(HttpStatus.NOT_FOUND));
 
-      if (vehiculo_alquilado.getStatusCode() == 404){
+    /*  if (vehiculo_alquilado.getStatusCode() ==  ){
 
       }
-
+*/
     }
 
     @PutMapping("/vehiculos/{id}")
@@ -92,15 +92,16 @@ public class VehiculoController {
       return ResponseEntity.ok().body(null);
 
     }
-
+/** 
     @GetMapping("/vehiculos/profesor/{id}")
 
     List<Vehiculo> readTutor(@PathVariable String id) {
 
-      return (List<Vehiculo>) vehiculoRepository.findById(id);
+      return (List<Vehiculo>) vehiculoRepository.findById(Long.parseLong(id));
 
     }
-
+*/
+/*
     @PostMapping("/vehiculos/{id}/incrementa")
 
     ResponseEntity<Vehiculo> incrementa(@PathVariable String id) {
@@ -116,5 +117,5 @@ public class VehiculoController {
       }).orElse(new ResponseEntity<Vehiculo>(HttpStatus.NOT_FOUND));  
 
     }
-
+*/
 }
